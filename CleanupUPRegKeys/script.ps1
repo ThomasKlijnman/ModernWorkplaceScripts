@@ -25,9 +25,9 @@ function CleanupRegistryKeys {
         $subKeyPath = $_.PSPath
         $samName = Get-ItemProperty -Path $subKeyPath | Select-Object -ExpandProperty SAMName -ErrorAction SilentlyContinue
         
-        # Check if the SAMName contains the NETBIOS of INET
+        # Check if the SAMName contains the NETBIOS of {NETBIOS}
         if ($samName -match "^INET\\") {
-            $userName = $samName -replace "^INET\\", ""
+            $userName = $samName -replace "^{NETBIOS}\\", ""
 
             # Compare with profiles under C:\Users and ProfileList
             $profilePath = "C:\Users\$userName"
