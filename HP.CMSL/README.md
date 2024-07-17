@@ -22,3 +22,7 @@ This PowerShell script automates the process of applying the default BIOS setup 
 2. **Open PowerShell as Administrator**:
    - Right-click on the PowerShell icon and select "Run as administrator".
    - Run the script
+
+2.1 **Run script remote**:
+   - Open Powershell as Administrator
+   - Run: ' iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/ThomasKlijnman/ModernWorkplaceScripts/main/HP.CMSL/DetectionAndRun-HPCSML.ps1')) '
