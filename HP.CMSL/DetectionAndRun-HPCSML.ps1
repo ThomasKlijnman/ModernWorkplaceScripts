@@ -143,7 +143,7 @@ function Check-Compliance {
       try
       {      
          $logFolder = "$($Env:LocalAppData)\HPCMSL\Logs"  
-         $logFile = "502dad2c-71af-4e9b-b9a2-3a2222f85a02"
+         $logFile = 'Q0FHIEFtbmVk'
          $logPathDir = [System.IO.Path]::GetDirectoryName($logFolder)
       
          if ((Test-Path -Path $logPathDir) -eq $false) {
