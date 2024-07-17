@@ -142,7 +142,7 @@ function Check-Compliance {
       
       try
       {      
-         $logFolder = "$($Env:LocalAppData)\HPConnect\Logs"  
+         $logFolder = "$($Env:LocalAppData)\HPCMSL\Logs"  
          $logFile = "502dad2c-71af-4e9b-b9a2-3a2222f85a02"
          $logPathDir = [System.IO.Path]::GetDirectoryName($logFolder)
       
@@ -189,8 +189,8 @@ function Check-Compliance {
       
       # URI to get last HP-CMSL version approved for HP Connect
       $preReqUri = 'https://hpia.hpcloud.hp.com/downloads/cmsl/wl/hp-mem-client-prereq.json'
-      $localDir = "$($Env:LocalAppData)\HPConnect\Tools"
-      $sharedTools = "$($Env:ProgramFiles)\HPConnect"
+      $localDir = "$($Env:LocalAppData)\HPCMSL\Tools"
+      $sharedTools = "$($Env:ProgramFiles)\HPCMSL"
       $maxTries = 3
       $triesInterval = 10
       
@@ -717,8 +717,8 @@ function Remediate-NonCompliance {
       
       $needReboot = $false # This value may be modified in the authentication policy
       $enableSureAdmin = $false # This value may be modified in the authentication policy
-      $logFolder = "$($Env:LocalAppData)\HPConnect\Logs"
-      $logFile = "502dad2c-71af-4e9b-b9a2-3a2222f85a02"
+      $logFolder = "$($Env:LocalAppData)\HPCMSL\Logs"
+      $logFile = $UOID
       $logPathDir = [System.IO.Path]::GetDirectoryName($logFolder)
       $exception = ""
       $biosSettingsErrorList = @{}
@@ -762,8 +762,8 @@ function Remediate-NonCompliance {
       
       # URI to get last HP-CMSL version approved for HP Connect
       $preReqUri = 'https://hpia.hpcloud.hp.com/downloads/cmsl/wl/hp-mem-client-prereq.json'
-      $localDir = "$($Env:LocalAppData)\HPConnect\Tools"
-      $sharedTools = "$($Env:ProgramFiles)\HPConnect"
+      $localDir = "$($Env:LocalAppData)\HPCMSL\Tools"
+      $sharedTools = "$($Env:ProgramFiles)\HPCMSL\"
       $maxTries = 3
       $triesInterval = 10
       
