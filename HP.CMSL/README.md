@@ -8,7 +8,7 @@ This PowerShell script automates the process of applying the default BIOS setup 
    Ensure you have PowerShell 5.1 or a later version installed on your system.
 
 2. **HP Client Management Script Library (HP.CMSL)**:
-   - Download and install the HP Client Management Script Library from [HP CMSL GitHub Releases](https://github.com/HPInc/HPPC-BIOS/releases).
+   - Download and install the HP Client Management Script Library
    - Follow the installation instructions provided in the repository.
 
 3. **Administrator Privileges**:
