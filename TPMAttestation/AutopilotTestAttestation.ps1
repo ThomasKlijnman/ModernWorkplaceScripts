@@ -19,7 +19,7 @@ function Test-AutopilotAttestation {
 ## Defining some functions #
 
 # Start logging
- $logPath = "C:\Logs\AutopilotAttestationLog.txt"
+ $logPath = "$env:Windir\Temp\DeploymentLogs\AutopilotAttestationLog.txt"
  Start-Transcript -Path $logPath -Append
 
 
