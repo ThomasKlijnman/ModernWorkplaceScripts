@@ -332,29 +332,27 @@ function IsInfineonFirmwareVersionSusceptible ($FirmwareMajor)
 
     Write-Host "Determining if the TPM has vulnerable Firmware" -ForegroundColor Yellow 
 
-    test-firmwaretpm
+function test-firmwaretpm {
 
-        write-host "`n"
-        if($attestationerror -eq "0")
-        {
-        write-host "TPM seems Ready For Attestation.. Let's Continue and run some more tests!" -ForegroundColor Green 
-        }
-        if($attestationerror -ne "0"){
-        write-host "TPM is NOT Ready For Attestation.. Let's run some tests!" -ForegroundColor red 
-        }
-        if(!(Get-Tpm | Select-Object tpmowned).TpmOwned -eq $true)
-        {
-            Write-Host "Reason: TpmOwned is not owned!)" -ForegroundColor Red
-        }
-        if($attestationerror -eq "16777216")
-        {
-        write-host "The TPM has a Health Attestation related vulnerability" -ForegroundColor Green 
-        } 
-        If(!(Get-ItemProperty -Path $IntegrityServicesRegPath -Name $WBCL -ErrorAction Ignore))
-        {
-            Write-Host "Reason: Registervalue HKLM:\SYSTEM\CurrentControlSet\Control\IntegrityServices\WBCL does not exist! Measured boot logs are missing. Make sure your reboot your device!" -ForegroundColor Red
+    Write-Host "`n"
+    
+        if ($attestationerror -eq "0") {
+            Write-Host "The TPM is ready for attestation. Proceeding with further tests." -ForegroundColor Green 
+        } elseif ($attestationerror -ne "0") {
+            Write-Host "The TPM is not ready for attestation. Initiating tests." -ForegroundColor Red 
         }
         
+        if (!(Get-Tpm | Select-Object tpmowned).TpmOwned -eq $true) {
+            Write-Host "Reason: The TPM is not owned." -ForegroundColor Red
+        }
+        
+        if ($attestationerror -eq "16777216") {
+            Write-Host "The TPM has a health attestation-related vulnerability." -ForegroundColor Green 
+        } 
+        
+        if (!(Get-ItemProperty -Path $IntegrityServicesRegPath -Name $WBCL -ErrorAction Ignore)) {
+            Write-Host "Reason: The registry value HKLM:\SYSTEM\CurrentControlSet\Control\IntegrityServices\WBCL does not exist. Measured boot logs are missing. Please ensure you reboot your device." -ForegroundColor Red
+        }      
         if($attestationerror -eq "262144"){
             write-host "Ek Certificate seems to be missing, let's try to fix it!" -ForegroundColor red
             Start-ScheduledTask -TaskPath "\Microsoft\Windows\TPM\" -TaskName "Tpm-Maintenance" -erroraction 'silentlycontinue'
