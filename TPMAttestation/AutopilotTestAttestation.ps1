@@ -34,12 +34,12 @@ function test-managemicrosoft {
     $output = $webclient.DownloadString($webpage)
 
     if($output -like "*Copyright (C) Microsoft Corporation. All rights reserved*"){
-        write-host "Great news as it looks like there are no OOBEAADV10 errors :) " -ForegroundColor green
-    }else{
-        write-host "Great scott, this doesnt look good. It looks like there are some OOBEAADV10 errors going on " -ForegroundColor red
-        write-host "Please visit https://call4cloud.nl/2022/07/oobeaadv10-return-of-the-502-error/ to read more about this error" -ForegroundColor red
-        }
+        Write-Host "The system check was successful. No OOBEAADV10 errors were detected." -ForegroundColor Green
+    } else {
+        Write-Host "Warning: OOBEAADV10 errors have been detected. Please investigate further." -ForegroundColor Red
+        Write-Host "For more information, please visit: https://call4cloud.nl/2022/07/oobeaadv10-return-of-the-502-error/" -ForegroundColor Red
     }
+}
 
 
 function test-connnectivity{
